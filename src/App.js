@@ -41,10 +41,10 @@ const Header = () => {
           className="h-full w-full object-cover object-left pointer-events-none"
         />
       </div>
-      <h1 className="font-black text-5xl text-center mt-12 text-Dark-Violet">
+      <h1 className="font-black text-4xl text-center mt-12 text-Dark-Violet">
         More than just shorter links
       </h1>
-      <p className="text-center text-xl w-4/5 mt-4 text-Grayish-Violet leading-8">
+      <p className="text-center text-lg w-4/5 mt-4 text-Grayish-Violet leading-8">
         Build your brand’s recognition and get detailed insights on how your
         links are performing.
       </p>
@@ -130,7 +130,7 @@ const Boost = () => {
         alt="boost"
         className="absolute h-full w-full pointer-events-none"
       />
-      <h1 className="z-10 text-3xl text-white font-black">
+      <h1 className="z-10 text-2xl text-white font-black">
         Boost your links today
       </h1>
       <button className="z-10 rounded-full mt-8">Get Started</button>
