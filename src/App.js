@@ -159,7 +159,7 @@ const Link = (id, short, original) => {
         {short}
       </div>
       <div className="p-4">
-        <span className="text-Cyan-custom">{original}</span>
+        <span className="text-Cyan-custom overflow-ellipsis">{original}</span>
         <button
           className="w-full mt-4 rounded-lg"
           onClick={() => {
