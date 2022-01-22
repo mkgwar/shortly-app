@@ -3,41 +3,20 @@
 @tailwind utilities;
 
 @layer components {
-  .img img {
-    @apply h-full w-full rounded-xl;
+  button {
+    @apply text-white bg-Cyan-custom py-4 px-12 font-black;
   }
 
-  .img {
-    @apply shadow-md rounded-xl;
+  h2 {
+    @apply text-white font-black mt-12;
   }
 
-  .chat-received {
-    @apply px-4 py-2 text-sm mt-4 text-Moderate-Violet
-      w-64  bg-gray-200 rounded-lg rounded-bl-sm;
+  a {
+    @apply text-Grayish-Violet mt-4;
   }
+}
 
-  .chat-sent {
-    @apply px-4 py-2 mt-4 text-Desaturated-Dark-Violet bg-white
-       rounded-lg rounded-br-sm relative left-full -translate-x-full text-sm shadow-md;
-  }
-
-  .dogs {
-    @apply shadow-none;
-  }
-
-  .header {
-    @apply h-28 w-full bg-gradient-to-l from-Light-Magenta to-Light-Violet flex justify-start gap-4 items-end p-4 pl-8 rounded-b-md rounded-t-3xl;
-  }
-
-  .notch {
-    @apply h-8 w-3/5 bg-white absolute -top-1 left-1/2 -translate-x-1/2 rounded-b-3xl;
-  }
-
-  .payment {
-    @apply bg-gradient-to-r from-Light-Magenta to-Light-Violet text-white flex justify-between items-center w-72 px-8 py-3;
-  }
-
-  .payment span {
-    @apply font-extrabold text-2xl;
-  }
+.footer-logo {
+  filter: brightness(5);
+  margin-bottom: 1rem;
 }

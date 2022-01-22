@@ -4,22 +4,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // text color
-        "Pale-Violet": "hsl(276, 100%, 81%)",
-        "Moderate-Violet": "hsl(276, 55%, 52%)",
-        "Desaturated-Dark-Violet": "hsl(271, 15%, 43%)",
-        "Grayish-Blue": "hsl(206, 6%, 79%)",
-        "Very-Dark-Desaturated-Violet": "hsl(271, 36%, 24%)",
-        "Dark-Grayish-Violet": "hsl(270, 7%, 64%)",
-
-        // gradient color
-        "Light-Magenta": "hsl(293, 100%, 63%)",
-        "Light-Violet": "hsl(264, 100%, 61%)",
+        //primary
+        "Cyan-custom": "hsl(180, 66%, 49%)",
+        "Dark-Violet": "hsl(257, 27%, 26%)",
 
         //secondary
-        "Light-Grayish-Violet": "hsl(270, 20%, 96%)",
-        "Very-Dark-Desaturated-Violet": "hsl(271, 36%, 24%)",
-        "Very-Light-Magenta": "hsl(289, 100%, 72%)",
+        "Red-custom": "hsl(0, 87%, 67%)",
+
+        //Neutral
+        "Gray-custom": "hsl(0, 0%, 75%)",
+        "Grayish-Violet": "hsl(257, 7%, 63%)",
+        "Very-Dark-Blue": "hsl(255, 11%, 22%)",
+        "Very-Dark-Violet": "hsl(260, 8%, 14%)",
       },
     },
   },
