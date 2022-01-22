@@ -155,11 +155,13 @@ const Link = (id, short, original) => {
       key={id}
       className="w-11/12 mx-auto bg-white shadow-md mt-8 rounded-xl"
     >
-      <div className="p-4 border-b-2 border-Gray-custom text-Very-Dark-Violet overflow-ellipsis">
+      <div className="p-4 border-b-2 border-Gray-custom text-Very-Dark-Violet overflow-ellipsis overflow-hidden whitespace-nowrap w-full">
         {short}
       </div>
       <div className="p-4">
-        <span className="text-Cyan-custom overflow-ellipsis">{original}</span>
+        <div className="text-Cyan-custom overflow-ellipsis overflow-hidden whitespace-nowrap w-full">
+          {original}
+        </div>
         <button
           className="w-full mt-4 rounded-lg"
           onClick={() => {
