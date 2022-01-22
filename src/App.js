@@ -1,5 +1,6 @@
 import "./App.css";
 import { useState, useRef } from "react";
+import axios from "axios";
 
 const App = () => {
   const [showMenu, setshowMenu] = useState(false);
@@ -9,7 +10,7 @@ const App = () => {
       {Navbar(showMenu, setshowMenu)}
       {Header(showMenu)}
       <main className="overflow-auto">
-        <Input />
+        <Links />
         <Features />
         <Boost />
       </main>
@@ -79,47 +80,95 @@ const Header = (showMenu) => {
   );
 };
 
-const Input = () => {
+const Links = () => {
   const showWarning = ["border-Red-custom", "visible"];
   const hideWarning = ["border-transparent", "invisible"];
 
   const [warning, setwarning] = useState(hideWarning);
   const inputContent = useRef("");
+  const [linkslist, setlinklists] = useState([]);
 
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
 
     if (inputContent.current.value === "") {
       setwarning(showWarning);
     } else {
       setwarning(hideWarning);
+
+      try {
+        const { data } = await axios.get(
+          `https://api.shrtco.de/v2/shorten?url=${inputContent.current.value}`
+        );
+
+        setlinklists([
+          [
+            data.result.code,
+            data.result.full_short_link,
+            data.result.original_link,
+          ],
+          ...linkslist,
+        ]);
+      } catch (err) {
+        window.alert("Invalid URL");
+      }
     }
   };
 
   return (
-    <div className="flex flex-col w-11/12 mx-auto p-8 bg-Dark-Violet relative  rounded-xl overflow-hidden mt-20">
-      <img
-        src="/images/bg-shorten-mobile.svg"
-        alt="bg"
-        className="absolute w-full h-full bottom-1/3 pointer-events-none"
-      />
-      <input
-        type="text"
-        placeholder="Shorten a link here..."
-        ref={inputContent}
-        className={
-          "p-4 font-black rounded-lg z-20 focus:outline-0 border-4 " +
-          warning[0]
-        }
-      />
-      <span
-        className={"text-Red-custom z-20 text-sm italic mt-2 " + warning[1]}
-      >
-        Please add a link
-      </span>
-      <button className="rounded-lg z-20 mt-4" onClick={submitHandler}>
-        Shorten It!
-      </button>
+    <>
+      <div className="flex flex-col w-11/12 mx-auto p-8 bg-Dark-Violet relative  rounded-xl overflow-hidden mt-20">
+        <img
+          src="/images/bg-shorten-mobile.svg"
+          alt="bg"
+          className="absolute w-full h-full bottom-1/3 pointer-events-none"
+        />
+        <input
+          type="text"
+          placeholder="Shorten a link here..."
+          ref={inputContent}
+          className={
+            "p-4 font-black rounded-lg z-20 focus:outline-0 border-4 " +
+            warning[0]
+          }
+        />
+        <span
+          className={"text-Red-custom z-20 text-sm italic mt-2 " + warning[1]}
+        >
+          Please add a link
+        </span>
+        <button className="rounded-lg z-20 mt-4" onClick={submitHandler}>
+          Shorten It!
+        </button>
+      </div>
+
+      {linkslist.map((res) => {
+        return Link(res[0], res[1], res[2]);
+      })}
+    </>
+  );
+};
+
+const Link = (id, short, original) => {
+  return (
+    <div
+      key={id}
+      className="w-11/12 mx-auto bg-white shadow-md mt-8 rounded-xl"
+    >
+      <div className="p-4 border-b-2 border-Gray-custom text-Very-Dark-Violet overflow-ellipsis">
+        {short}
+      </div>
+      <div className="p-4">
+        <span className="text-Cyan-custom">{original}</span>
+        <button
+          className="w-full mt-4 rounded-lg"
+          onClick={() => {
+            navigator.clipboard.writeText(short);
+          }}
+        >
+          Copy
+        </button>
+      </div>
     </div>
   );
 };
