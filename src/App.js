@@ -130,7 +130,7 @@ const Boost = () => {
         alt="boost"
         className="absolute h-full w-full pointer-events-none"
       />
-      <h1 className="z-10 text-2xl text-white font-black">
+      <h1 className="z-10 text-3xl text-white font-black">
         Boost your links today
       </h1>
       <button className="z-10 rounded-full mt-8">Get Started</button>
@@ -167,4 +167,5 @@ const Footer = () => {
     </footer>
   );
 };
+
 export default App;
