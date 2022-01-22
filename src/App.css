@@ -11,8 +11,12 @@
     @apply text-white font-black mt-12;
   }
 
-  a {
+  footer a {
     @apply text-Grayish-Violet mt-4;
+  }
+
+  .hamburger a {
+    @apply mb-8;
   }
 }
 
