@@ -21,18 +21,30 @@ const App = () => {
 
 const Navbar = (showMenu, setshowMenu) => {
   return (
-    <nav className="flex w-full items-center justify-between p-8">
+    <nav className="flex w-full items-center justify-between p-8 lg:px-32">
       <div>
         <img src="/images/logo.svg" alt="logo" />
       </div>
 
       <div
-        className="h-6 flex flex-col gap-1 cursor-pointer"
+        className="h-6 flex flex-col gap-1 cursor-pointer lg:hidden"
         onClick={() => setshowMenu(!showMenu)}
       >
         <div className="bg-Grayish-Violet h-1/3 w-8" />
         <div className="bg-Grayish-Violet h-1/3 w-8" />
         <div className="bg-Grayish-Violet h-1/3 w-8" />
+      </div>
+
+      <div className="hidden lg:flex items-center justify-between w-full ml-16">
+        <div className="flex gap-8">
+          <a href="https://google.com">Features</a>
+          <a href="https://google.com">Pricing</a>
+          <a href="https://google.com">Resources</a>
+        </div>
+        <div className="flex items-center gap-12">
+          <a href="https://google.com">Login</a>
+          <button className=" rounded-full">Sign Up</button>
+        </div>
       </div>
     </nav>
   );
@@ -58,24 +70,28 @@ const HamburgerMenu = (showMenu) => {
 
 const Header = (showMenu) => {
   return (
-    <header className="flex flex-col items-center overflow-auto relative">
+    <header className="flex flex-col items-center overflow-auto relative lg:flex-row-reverse lg:pl-32">
       {HamburgerMenu(showMenu)}
 
-      <div className="h-96 w-full pl-8">
+      <div className="h-96 w-full pl-8 lg:h-full">
         <img
           src="/images/illustration-working.svg"
           alt="header"
           className="h-full w-full object-cover object-left pointer-events-none"
         />
       </div>
-      <h1 className="font-black text-4xl text-center mt-12 text-Dark-Violet">
-        More than just shorter links
-      </h1>
-      <p className="text-center text-lg w-4/5 mt-4 text-Grayish-Violet leading-8">
-        Build your brand’s recognition and get detailed insights on how your
-        links are performing.
-      </p>
-      <button className="rounded-full mt-8">Get Started</button>
+      <div className="flex flex-col justify-center px-8">
+        <h1 className="font-black text-4xl text-center mt-12 text-Dark-Violet lg:text-7xl lg:text-left">
+          More than just shorter links
+        </h1>
+        <p className="text-center text-lg mt-4 text-Grayish-Violet leading-8 lg:text-left">
+          Build your brand’s recognition and get detailed insights on how your
+          links are performing.
+        </p>
+        <button className="rounded-full mt-8 w-4/5 mx-auto lg:w-2/5 lg:mx-0">
+          Get Started
+        </button>
+      </div>
     </header>
   );
 };
@@ -117,7 +133,7 @@ const Links = () => {
 
   return (
     <>
-      <div className="flex flex-col w-11/12 mx-auto p-8 bg-Dark-Violet relative  rounded-xl overflow-hidden mt-20">
+      <div className="flex flex-col w-11/12 mx-auto p-8 bg-Dark-Violet relative  rounded-xl overflow-hidden mt-20 lg:w-4/5 lg:flex-row lg:justify-center lg:items-center">
         <img
           src="/images/bg-shorten-mobile.svg"
           alt="bg"
@@ -128,16 +144,21 @@ const Links = () => {
           placeholder="Shorten a link here..."
           ref={inputContent}
           className={
-            "p-4 font-black rounded-lg z-20 focus:outline-0 border-4 " +
+            "p-4 font-black rounded-lg z-20 focus:outline-0 border-4 lg:basis-4/5  " +
             warning[0]
           }
         />
         <span
-          className={"text-Red-custom z-20 text-sm italic mt-2 " + warning[1]}
+          className={
+            "text-Red-custom z-20 text-sm italic mt-2 lg:hidden " + warning[1]
+          }
         >
           Please add a link
         </span>
-        <button className="rounded-lg z-20 mt-4" onClick={submitHandler}>
+        <button
+          className="rounded-lg z-20 mt-4 lg:h-full lg:m-0 lg:ml-8"
+          onClick={submitHandler}
+        >
           Shorten It!
         </button>
       </div>
@@ -153,17 +174,17 @@ const Link = (id, short, original) => {
   return (
     <div
       key={id}
-      className="w-11/12 mx-auto bg-white shadow-md mt-8 rounded-xl"
+      className="w-11/12 mx-auto bg-white shadow-md mt-8 rounded-xl lg:w-4/5 lg:flex lg:items-center lg:justify-between"
     >
-      <div className="p-4 border-b-2 border-Gray-custom text-Very-Dark-Violet overflow-ellipsis overflow-hidden whitespace-nowrap w-full">
+      <div className="p-4 border-b-2 border-Gray-custom text-Very-Dark-Violet overflow-ellipsis overflow-hidden whitespace-nowrap w-full lg:border-0 lg:basis-2/5">
         {short}
       </div>
-      <div className="p-4">
-        <div className="text-Cyan-custom overflow-ellipsis overflow-hidden whitespace-nowrap w-full">
+      <div className="p-4 lg:flex lg:items-center">
+        <div className="text-Cyan-custom overflow-ellipsis overflow-hidden whitespace-nowrap w-full lg:w-min">
           {original}
         </div>
         <button
-          className="w-full mt-4 rounded-lg"
+          className="w-full mt-4 rounded-lg lg:max-w-sm lg:m-0 lg:ml-8"
           onClick={() => {
             navigator.clipboard.writeText(short);
           }}
@@ -192,33 +213,39 @@ const Features = () => {
         <h1 className="text-Dark-Violet font-black text-3xl">
           Advanced Statistics
         </h1>
-        <p className="text-Grayish-Violet mt-4 leading-8">
+        <p className="text-Grayish-Violet mt-4 leading-8 lg:w-2/5 lg:mx-auto">
           Track how your links are performing across the web with our advanced
           statistics dashboard.
         </p>
       </div>
 
-      {FeatureItem(url[0], title[0], paragraph[0])}
-      <div className="bg-Cyan-custom h-32 w-2 mx-auto" />
-      {FeatureItem(url[1], title[1], paragraph[1])}
-      <div className="bg-Cyan-custom h-32 w-2 mx-auto" />
-      {FeatureItem(url[2], title[2], paragraph[2])}
+      <div className="lg:flex lg:px-32 lg:gap-16">
+        {FeatureItem(url[0], title[0], paragraph[0])}
+        <div className="bg-Cyan-custom h-32 w-2 mx-auto lg:hidden" />
+        {FeatureItem(url[1], title[1], paragraph[1])}
+        <div className="bg-Cyan-custom h-32 w-2 mx-auto lg:hidden" />
+        {FeatureItem(url[2], title[2], paragraph[2])}
+      </div>
     </>
   );
 };
 
 const FeatureItem = (url, title, paragraph) => {
   return (
-    <div className="w-11/12 mx-auto text-center bg-white px-8 pb-8 rounded-lg shadow-md">
-      <div className="h-24 w-24 bg-Dark-Violet flex justify-center items-center rounded-full mx-auto relative -top-12">
+    <div className="w-11/12 mx-auto text-center bg-white px-8 pb-8 rounded-lg shadow-md lg:w-full">
+      <div className="h-24 w-24 bg-Dark-Violet flex justify-center items-center rounded-full mx-auto relative -top-12 lg:m-0">
         <img
           src={"/images/icon-" + url + ".svg"}
           alt="feature"
           className="pointer-events-none"
         />
       </div>
-      <h1 className="text-2xl font-black text-Dark-Violet">{title}</h1>
-      <p className="text-Grayish-Violet mt-4 leading-8">{paragraph}</p>
+      <h1 className="text-2xl font-black text-Dark-Violet lg:text-left">
+        {title}
+      </h1>
+      <p className="text-Grayish-Violet mt-4 leading-8 lg:text-left">
+        {paragraph}
+      </p>
     </div>
   );
 };
@@ -241,25 +268,31 @@ const Boost = () => {
 
 const Footer = () => {
   return (
-    <footer className="flex flex-col justify-center items-center p-16 bg-Very-Dark-Violet">
+    <footer className="flex flex-col justify-center items-center p-16 bg-Very-Dark-Violet lg:flex-row lg:items-start lg:justify-between lg:px-32">
       <img src="/images/logo.svg" alt="logo" className="footer-logo" />
-      <h2>Features</h2>
-      <a href="https://google.com">Link Shortening</a>
-      <a href="https://google.com">Branded Links</a>
-      <a href="https://google.com">Analytics</a>
+      <div className="flex flex-col text-center lg:text-left">
+        <h2>Features</h2>
+        <a href="https://google.com">Link Shortening</a>
+        <a href="https://google.com">Branded Links</a>
+        <a href="https://google.com">Analytics</a>
+      </div>
 
-      <h2>Resources</h2>
-      <a href="https://google.com">Blog</a>
-      <a href="https://google.com">Developers</a>
-      <a href="https://google.com">Support</a>
+      <div className="flex flex-col text-center lg:text-left">
+        <h2>Resources</h2>
+        <a href="https://google.com">Blog</a>
+        <a href="https://google.com">Developers</a>
+        <a href="https://google.com">Support</a>
+      </div>
 
-      <h2>Company</h2>
-      <a href="https://google.com">About</a>
-      <a href="https://google.com">Our Team</a>
-      <a href="https://google.com">Careers</a>
-      <a href="https://google.com">Contact</a>
+      <div className="flex flex-col text-center lg:text-left">
+        <h2>Company</h2>
+        <a href="https://google.com">About</a>
+        <a href="https://google.com">Our Team</a>
+        <a href="https://google.com">Careers</a>
+        <a href="https://google.com">Contact</a>
+      </div>
 
-      <div className="flex gap-8 mt-12">
+      <div className="flex gap-8 mt-12 lg:m-0">
         <img src="/images/icon-facebook.svg" alt="icon" />
         <img src="/images/icon-twitter.svg" alt="icon" />
         <img src="/images/icon-pinterest.svg" alt="icon" />
